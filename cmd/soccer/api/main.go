@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 
-	"gitgub.com/Sup3r-Us3r/go-soccer/internal/infra/web/webserver"
+	"github.com/Sup3r-Us3r/go-soccer/internal/infra/web/webserver"
 )
 
 func main() {

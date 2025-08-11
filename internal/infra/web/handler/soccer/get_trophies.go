@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"gitgub.com/Sup3r-Us3r/go-soccer/internal/apperr"
-	"gitgub.com/Sup3r-Us3r/go-soccer/internal/usecase/soccer"
+	"github.com/Sup3r-Us3r/go-soccer/internal/apperr"
+	"github.com/Sup3r-Us3r/go-soccer/internal/usecase/soccer"
 )
 
 type Trophy struct {

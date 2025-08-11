@@ -1,4 +1,4 @@
-module gitgub.com/Sup3r-Us3r/go-soccer
+module github.com/Sup3r-Us3r/go-soccer
 
 go 1.24.1
 

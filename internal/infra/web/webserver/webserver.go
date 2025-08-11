@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"net/http"
 
-	handler "gitgub.com/Sup3r-Us3r/go-soccer/internal/infra/web/handler/soccer"
-	usecase "gitgub.com/Sup3r-Us3r/go-soccer/internal/usecase/soccer"
+	handler "github.com/Sup3r-Us3r/go-soccer/internal/infra/web/handler/soccer"
+	usecase "github.com/Sup3r-Us3r/go-soccer/internal/usecase/soccer"
 )
 
 type WebServer struct {

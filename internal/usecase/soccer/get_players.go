@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"gitgub.com/Sup3r-Us3r/go-soccer/internal/apperr"
 	"github.com/PuerkitoBio/goquery"
+	"github.com/Sup3r-Us3r/go-soccer/internal/apperr"
 )
 
 type GetPlayersUseCaseInputDTO struct {

@@ -8,6 +8,7 @@ import (
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/Sup3r-Us3r/go-soccer/internal/apperr"
+	"github.com/Sup3r-Us3r/go-soccer/internal/util"
 )
 
 type GetLatestMatchesUseCaseInputDTO struct {
@@ -35,7 +36,7 @@ func NewGetLatestMatchesUseCase() *GetLatestMatchesUseCase {
 }
 
 func (glmuc GetLatestMatchesUseCase) Execute(ctx context.Context, input GetLatestMatchesUseCaseInputDTO) ([]GetLatestMatchesUseCaseOutputDTO, error) {
-	res, err := http.Get(fmt.Sprintf("https://www.placardefutebol.com.br/time/%s/ultimos-jogos", input.TeamName))
+	res, err := http.Get(fmt.Sprintf("https://www.placardefutebol.com.br/time/%s/ultimos-jogos", util.Slugify(input.TeamName)))
 	if err != nil {
 		return nil, apperr.NewInternalServerError("Failed to fetch latest matches")
 	}

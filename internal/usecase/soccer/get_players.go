@@ -7,6 +7,7 @@ import (
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/Sup3r-Us3r/go-soccer/internal/apperr"
+	"github.com/Sup3r-Us3r/go-soccer/internal/util"
 )
 
 type GetPlayersUseCaseInputDTO struct {
@@ -31,7 +32,7 @@ func NewGetPlayersUseCase() *GetPlayersUseCase {
 }
 
 func (gpuc GetPlayersUseCase) Execute(ctx context.Context, input GetPlayersUseCaseInputDTO) ([]GetPlayersUseCaseOutputDTO, error) {
-	res, err := http.Get(fmt.Sprintf("https://www.placardefutebol.com.br/time/%s/jogadores", input.TeamName))
+	res, err := http.Get(fmt.Sprintf("https://www.placardefutebol.com.br/time/%s/jogadores", util.Slugify(input.TeamName)))
 	if err != nil {
 		return nil, apperr.NewInternalServerError("Failed to fetch players")
 	}

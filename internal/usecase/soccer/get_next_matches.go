@@ -7,6 +7,7 @@ import (
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/Sup3r-Us3r/go-soccer/internal/apperr"
+	"github.com/Sup3r-Us3r/go-soccer/internal/util"
 )
 
 type GetNextMatchesUseCaseInputDTO struct {
@@ -33,7 +34,7 @@ func NewGetNextMatchesUseCase() *GetNextMatchesUseCase {
 }
 
 func (gnmuc GetNextMatchesUseCase) Execute(ctx context.Context, input GetNextMatchesUseCaseInputDTO) ([]GetNextMatchesUseCaseOutputDTO, error) {
-	res, err := http.Get(fmt.Sprintf("https://www.placardefutebol.com.br/time/%s/proximos-jogos", input.TeamName))
+	res, err := http.Get(fmt.Sprintf("https://www.placardefutebol.com.br/time/%s/proximos-jogos", util.Slugify(input.TeamName)))
 	if err != nil {
 		return nil, apperr.NewInternalServerError("Failed to fetch next matches")
 	}

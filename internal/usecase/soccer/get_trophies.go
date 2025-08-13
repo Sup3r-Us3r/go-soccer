@@ -8,6 +8,7 @@ import (
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/Sup3r-Us3r/go-soccer/internal/apperr"
+	"github.com/Sup3r-Us3r/go-soccer/internal/util"
 )
 
 type Championship struct {
@@ -35,7 +36,7 @@ func NewGetTrophiesUseCase() *GetTrophiesUseCase {
 }
 
 func (gtuc GetTrophiesUseCase) Execute(ctx context.Context, input GetTrophiesUseCaseInputDTO) ([]GetTrophiesUseCaseOutputDTO, error) {
-	res, err := http.Get(fmt.Sprintf("https://www.placardefutebol.com.br/time/%s/titulos", input.TeamName))
+	res, err := http.Get(fmt.Sprintf("https://www.placardefutebol.com.br/time/%s/titulos", util.Slugify(input.TeamName)))
 	if err != nil {
 		return nil, apperr.NewInternalServerError("Failed to fetch trophies")
 	}

@@ -9,6 +9,7 @@ import (
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/Sup3r-Us3r/go-soccer/internal/apperr"
+	"github.com/Sup3r-Us3r/go-soccer/internal/util"
 )
 
 type Team struct {
@@ -38,7 +39,7 @@ func NewGetTransfersUseCase() *GetTransfersUseCase {
 }
 
 func (gtuc GetTransfersUseCase) Execute(ctx context.Context, input GetTransfersUseCaseInputDTO) ([]GetTransfersUseCaseOutputDTO, error) {
-	res, err := http.Get(fmt.Sprintf("https://www.placardefutebol.com.br/time/%s/transferencias", input.TeamName))
+	res, err := http.Get(fmt.Sprintf("https://www.placardefutebol.com.br/time/%s/transferencias", util.Slugify(input.TeamName)))
 	if err != nil {
 		return nil, apperr.NewInternalServerError("Failed to fetch transfers")
 	}

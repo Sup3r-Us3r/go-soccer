@@ -1,5 +1,5 @@
 # Binary name
-BINARY_NAME=go-soccer-api
+BINARY_NAME=go-soccer
 
 # Variables for version and commit info
 VERSION=$(shell git describe --tags --always --dirty)

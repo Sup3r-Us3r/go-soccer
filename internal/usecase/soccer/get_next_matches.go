@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"strings"
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/Sup3r-Us3r/go-soccer/internal/apperr"
@@ -59,7 +60,9 @@ func (gnmuc GetNextMatchesUseCase) Execute(ctx context.Context, input GetNextMat
 		homeLogo, _ := s.Children().Eq(3).Find("img").Attr("src")
 		awayLogo, _ := s.Children().Eq(4).Find("img").Attr("src")
 
-		date := s.Children().Eq(5).Find("div.match__lg_card--datetime").Text()
+		rawDate := s.Children().Eq(5).Find("div.match__lg_card--datetime").Text()
+		cleanDate := strings.TrimSpace(rawDate)
+		cleanDate = strings.Join(strings.Fields(cleanDate), " ")
 
 		matches = append(matches, GetNextMatchesUseCaseOutputDTO{
 			Title:    title,
@@ -67,7 +70,7 @@ func (gnmuc GetNextMatchesUseCase) Execute(ctx context.Context, input GetNextMat
 			HomeLogo: homeLogo,
 			Away:     away,
 			AwayLogo: awayLogo,
-			Date:     date,
+			Date:     cleanDate,
 		})
 	})
 
